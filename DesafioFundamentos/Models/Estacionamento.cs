@@ -15,8 +15,18 @@ namespace DesafioFundamentos.Models
         public void AdicionarVeiculo()
         {
             // TODO: Pedir para o usuário digitar uma placa (ReadLine) e adicionar na lista "veiculos"
-            // *IMPLEMENTE AQUI*
+            // *IMPLEMENTE AQUI* 
             Console.WriteLine("Digite a placa do veículo para estacionar:");
+            string placa = Console.ReadLine();
+            if (!string.IsNullOrWhiteSpace(placa) && !veiculos.Any(x => x.ToUpper() == placa.ToUpper()))
+            {
+                veiculos.Add(placa);
+                Console.WriteLine($"O veículo {placa} foi adicionado com sucesso!");
+            }
+            else
+            {
+                Console.WriteLine("Placa inválida ou veículo já está estacionado.");
+            }
         }
 
         public void RemoverVeiculo()
@@ -25,6 +35,7 @@ namespace DesafioFundamentos.Models
 
             // Pedir para o usuário digitar a placa e armazenar na variável placa
             // *IMPLEMENTE AQUI*
+            // Inicializa a variável placa
             string placa = "";
 
             // Verifica se o veículo existe
@@ -37,9 +48,17 @@ namespace DesafioFundamentos.Models
                 // *IMPLEMENTE AQUI*
                 int horas = 0;
                 decimal valorTotal = 0; 
+                horas = Convert.ToInt32(Console.ReadLine());
+                valorTotal = precoInicial + (precoPorHora * horas);
+
 
                 // TODO: Remover a placa digitada da lista de veículos
                 // *IMPLEMENTE AQUI*
+                veiculos.Remove(placa);
+                // Exibe o valor total a ser pago
+                // *IMPLEMENTE AQUI*
+                // Exibe a mensagem de sucesso
+                Console.Clear();
 
                 Console.WriteLine($"O veículo {placa} foi removido e o preço total foi de: R$ {valorTotal}");
             }
@@ -57,6 +76,10 @@ namespace DesafioFundamentos.Models
                 Console.WriteLine("Os veículos estacionados são:");
                 // TODO: Realizar um laço de repetição, exibindo os veículos estacionados
                 // *IMPLEMENTE AQUI*
+                foreach (var veiculo in veiculos)
+                {
+                    Console.WriteLine(veiculo);
+                }
             }
             else
             {
